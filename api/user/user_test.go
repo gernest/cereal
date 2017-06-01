@@ -42,7 +42,7 @@ func TestCreate(t *testing.T) {
 		t.Errorf("expected %d got %d", http.StatusBadRequest, w.Code)
 	}
 
-	b, err := json.Marshal(&CreateUserRequest{Password: "pass"})
+	b, err := json.Marshal(&CreateRequest{Password: "pass"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -73,7 +73,7 @@ func TestCreate(t *testing.T) {
 		t.Errorf("expected %d got %d", http.StatusUnprocessableEntity, w.Code)
 	}
 
-	b, err = json.Marshal(&CreateUserRequest{
+	b, err = json.Marshal(&CreateRequest{
 		Name:     "gernest",
 		Password: "pass",
 	})
@@ -87,7 +87,7 @@ func TestCreate(t *testing.T) {
 		t.Fatalf("expected %d got %d", http.StatusCreated, w.Code)
 	}
 
-	b, err = json.Marshal(&CreateUserRequest{
+	b, err = json.Marshal(&CreateRequest{
 		Name:     "gernest",
 		Password: "pass",
 	})

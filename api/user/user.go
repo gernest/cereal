@@ -14,14 +14,14 @@ import (
 	"github.com/ngorm/ngorm"
 )
 
-// CreateUserRequest is the JSON object expected when creating anew user.
-type CreateUserRequest struct {
+// CreateRequest is the JSON object expected when creating anew user.
+type CreateRequest struct {
 	Name     string `json:"username"`
 	Password string `json:"password"`
 }
 
 // Valid performs field validation
-func (c *CreateUserRequest) Valid() *messages.Message {
+func (c *CreateRequest) Valid() *messages.Message {
 	var m *messages.Message
 	if c.Name == "" {
 		m = &messages.Message{
@@ -81,7 +81,7 @@ func (c *CreateUserRequest) Valid() *messages.Message {
 // request and returns only StatusCreated 201 when ucess and appropriate error
 // when something is not right
 func Create(db *ngorm.DB, w http.ResponseWriter, r *http.Request) {
-	req := &CreateUserRequest{}
+	req := &CreateRequest{}
 	m := &messages.Message{}
 	b, err := ioutil.ReadAll(r.Body)
 	if err != nil {
